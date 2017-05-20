@@ -1,0 +1,31 @@
+.jumbotron {
+	text-align: center;
+	background-image: url("../images/train-tracks.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+    background-position-y: -535px;
+    color: #fff;
+}
+
+p {
+	font-family: 'Open-sans', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Oswald', sans-serif;
+	font-weight: 300;
+}
+
+.panel-title {
+	letter-spacing: .6px;
+	font-size: 1.25em;
+}
+
+.panel-primary {
+	border-color: #5f5b54;
+}
+
+.panel-primary>.panel-heading {
+	background-color: #5f5b54;
+	border-color: #5f5b54;
+}
