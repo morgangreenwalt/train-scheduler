@@ -29,3 +29,23 @@ h1, h2, h3, h4, h5, h6 {
 	background-color: #5f5b54;
 	border-color: #5f5b54;
 }
+
+.table>thead>tr>th {
+    border-bottom: none;
+}
+
+.btn {
+    padding: 2px 8px;
+}
+
+@media only screen and (max-width: 1140px){
+	.jumbotron {
+		background-position-y: -200px;
+	}
+}
+
+@media only screen and (max-width: 540px){
+	.jumbotron {
+		background-position-y: -50px;
+	}
+}

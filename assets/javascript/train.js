@@ -41,7 +41,7 @@ $("#submit-button").on("click", function(event){
 //Display all train times with most recent submission listed first
 database.ref().on("child_added", function(snapshot){
   var child = snapshot.val();
-  $(".train-list").prepend("<tr> <td>"+child.trainName+"</td> <td>"+child.destination+"</td> <td>"+child.frequency+"</td> <td>"+child.trainTime+"</td> <td>"+child.minsAway+"</td> <td><button type='submit' id='updateBtn' class='btn btn-default-xs'>Edit</button></td> <td><button type='submit' id='deleteBtn' class='btn btn-danger'>Clear</button></td> </tr>");
+  $(".train-list").prepend("<tr> <td>"+child.trainName+"</td> <td>"+child.destination+"</td> <td>"+child.frequency+"</td> <td>"+child.trainTime+"</td> <td>"+child.minsAway+"</td> <td><button type='submit' id='updateBtn' class='btn btn-default-xs'>Edit</button> <button type='submit' id='deleteBtn' class='btn btn-danger'>Clear</button></td> </tr>");
 });
 
 });
