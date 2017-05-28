@@ -18,30 +18,37 @@ var database = firebase.database();
 $("#submit-button").on("click", function(event){
     event.preventDefault();
 
-//Train Variables
+//Train variables
   var trainName = $("#train-name").val().trim();
   var destination = $("#destination").val().trim();
-  var trainTime = $("#train-time").val().trim();
-  var frequency = $("#frequency").val().trim();
-  var convertedTime = moment(trainTime, "HH:mm A");
-  var trainTimePretty = moment(convertedTime).format("HH:mm A");
-  var nextArrival = moment(convertedTime).diff(moment(), "minutes");
-  // var updateBtn = $("<button type='submit' id='updateBtn' class='btn btn-primary'>" + Update Train + " </button>");
+  var firstTrainTime = $("#train-time").val().trim();
+  var frequency = parseInt($("#frequency").val().trim());
+
+//Convert train time
+  var convertTime = moment(firstTrainTime, "HH:mm A");
+  var firstTimeConverted = moment(convertTime).format("HH:mm A");
+  var diffTime = moment().diff(moment(convertTime), "minutes");
+  var tRemainder = diffTime % frequency;
+  var minutesTillTrain = frequency - tRemainder;
+  var nextTrain = moment().add(minutesTillTrain, "minutes");
+  var convertTime2 = moment(nextTrain, "HH:mm A");
+  var nextTrainFormatted = moment(convertTime2).format("HH:mm A");       
 
 //Push variables to Firebase    
   database.ref().push({
     trainName : trainName,
     destination : destination,
-    trainTime : trainTimePretty,
+    firstTrainTime : firstTrainTime,
     frequency : frequency,
-    minsAway : nextArrival
+    nextTrain : minutesTillTrain,
+    nextArrival : nextTrainFormatted
   });
 });
 
 //Display all train times with most recent submission listed first
 database.ref().on("child_added", function(snapshot){
   var child = snapshot.val();
-  $(".train-list").prepend("<tr> <td>"+child.trainName+"</td> <td>"+child.destination+"</td> <td>"+child.frequency+"</td> <td>"+child.trainTime+"</td> <td>"+child.minsAway+"</td> <td><button type='submit' id='updateBtn' class='btn btn-default-xs'>Edit</button> <button type='submit' id='deleteBtn' class='btn btn-danger'>Clear</button></td> </tr>");
+  $(".train-list").prepend("<tr> <td>"+child.trainName+"</td> <td>"+child.destination+"</td> <td>"+child.frequency+"</td> <td>"+child.nextArrival+"</td> <td>"+child.nextTrain+"</td></tr>");
 });
 
 });
