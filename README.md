@@ -1,7 +1,7 @@
 Train Time
 -------
 
-An interactive web application taking in upcoming train information and outputting for user to view.
+An interactive web application taking in upcoming train information and displaying train data.
 
 Technologies used: 
 1. HTML/ CSS
